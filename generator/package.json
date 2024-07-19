@@ -1,0 +1,22 @@
+{
+  "name": "wallpaper-generator",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "generate": "tsx index.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@playwright/browser-chromium": "^1.45.2",
+    "@types/node": "^20.14.11",
+    "playwright": "^1.45.2",
+    "tsx": "^4.16.2"
+  },
+  "author": "FujoCoded LLC",
+  "license": "MIT"
+}
