@@ -1,4 +1,3 @@
-import "./style.css";
 const modules = import.meta.glob("/wallpapers/**/index.html");
 
 function changeWallpaper(e: Event | string) {
