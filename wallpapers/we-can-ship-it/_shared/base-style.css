@@ -1,0 +1,12 @@
+body {
+  background-color: var(--background-color);
+  width: 100dvw;
+  height: 100dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+div {
+  font-size: 10dvw;
+  color: var(--text-color, black);
+}
