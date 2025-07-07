@@ -1,16 +1,25 @@
 #!/bin/sh
 
-# Read remote and branch info from stdin (provided by git)
-while read local_ref local_sha remote_ref remote_sha
-do
-  # Only check pushes to the 'upstream' remote
-  if [ "$1" = "upstream" ]; then
-    # Extract branch name from ref
-    branch="${local_ref#refs/heads/}"
+# Only check pushes to the 'upstream' remote
+if [ "$1" = "upstream" ]; then
+  while read local_ref local_sha remote_ref remote_sha
+  do
     # Only allow branches starting with 'upstream', 'pr-upstream', or 'to-upstream'
+    branch="${local_ref#refs/heads/}"
     case "$branch" in
       upstream*|pr-upstream*|to-upstream*)
-        # Allowed
+        # Strict: block if any commit in the range touched /wallpapers
+        if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+          # New branch, compare against all commits
+          range="$local_sha"
+        else
+          # Compare against where the remote branch is at
+          range="$remote_sha..$local_sha"
+        fi
+        if git log --name-only --pretty="" "$range" | grep -q '^wallpapers/'; then
+          echo "❌ Push blocked: At least one commit in your push to 'upstream' touches files in /wallpapers (even if reverted)."
+          exit 1
+        fi
         ;;
       *)
         echo "❌ Push blocked: Only branches starting with 'upstream', 'pr-upstream', or 'to-upstream' can be pushed to the 'upstream' remote."
@@ -18,7 +27,7 @@ do
         exit 1
         ;;
     esac
-  fi
-done
+  done
+fi
 
 exit 0 
