@@ -25,6 +25,9 @@ config.sizes
       height + "px"
     );
 
+    const spans = preview.querySelectorAll("span");
+    spans[0].innerText = width;
+    spans[1].innerText = height;
     addedResolutions.push(resolution);
     document.querySelector("#size-previews")?.appendChild(preview);
   })
