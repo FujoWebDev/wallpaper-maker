@@ -8,7 +8,7 @@ case "$branch" in
       echo "❌ Commit blocked: /wallpapers changes are not allowed on $branch"
       echo "If you want to commit wallpapers, switch to a non-upstream branch."
       echo "If you know what you're doing, you can bypass this check by running"
-      echo "git commit with -n (no verify)."
+      echo "git commit with --no-verify."
       exit 1
     fi
     ;;

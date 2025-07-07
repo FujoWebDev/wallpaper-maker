@@ -18,14 +18,14 @@ if [ "$1" = "upstream" ]; then
         fi
         if git log --name-only --pretty="" "$range" | grep -q '^wallpapers/'; then
           echo "❌ Push blocked: At least one commit in your push to 'upstream' touches files in /wallpapers (even if reverted)."
-          echo "If you know what you're doing, you can bypass this check by running git push with -n (no verify)."
+          echo "If you know what you're doing, you can bypass this check by running git push with --no-verify."
           exit 1
         fi
         ;;
       *)
         echo "❌ Push blocked: Only branches starting with 'upstream', 'pr-upstream', or 'to-upstream' can be pushed to the 'upstream' remote."
         echo "You tried to push branch '$branch'."
-        echo "If you know what you're doing, you can bypass this check by running git push with -n (no verify)."
+        echo "If you know what you're doing, you can bypass this check by running git push with --no-verify."
       exit 1
         ;;
     esac
