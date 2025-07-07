@@ -1,0 +1,16 @@
+#!/bin/sh
+
+# Only block on upstream branches
+branch="$(git rev-parse --abbrev-ref HEAD)"
+case "$branch" in
+  upstream*|pr-upstream*|to-upstream*)
+    if git diff --cached --name-only | grep -q '^wallpapers/'; then
+      echo "❌ Commit blocked: /wallpapers changes are not allowed on $branch"
+      echo "If you want to commit wallpapers, switch to a non-upstream branch."
+      exit 1
+    fi
+    ;;
+  *)
+    # On other branches, allow all commits
+    ;;
+esac 

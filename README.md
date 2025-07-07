@@ -6,8 +6,7 @@ Generate and preview responsive wallpapers in multiple sizes using HTML and CSS.
 
 ### Install
 
-Run `npm install`. To run the generator you will need `node 22`, but you can
-create wallpapers with any modern version of node.
+Run `npm install`. You will need `node 22` to run this code.
 
 ### Wallpaper preview
 
@@ -17,7 +16,7 @@ in your console.
 
 ### Wallpaper generation
 
-To generate wallpapers, you can run the generator using: `npm run --prefix generator/ generate`. Remember: you must use `node 22`.
+To generate wallpapers, you can run the generator using: `npm run generate`.
 
 Wallpapers will be generated in the `/generated/` directory.
 
@@ -26,6 +25,19 @@ Wallpapers will be generated in the `/generated/` directory.
 To create a wallpaper add a folder under `/wallpapers/` with an `index.html` file.
 You can use any HTML and CSS (and probably even JavaScript) to create the wallpaper
 of your dreams. You can see live previews by running `npm run dev`.
+
+The generated wallpapers folder structure will match your folder structure. Every folder with
+an `index.html` file will be considered a wallpaper.
+
+### Reusing HTML code
+
+You can reuse HTML code with this special tag: `<load src="../html_to_include.html" />`. See
+[vite-plugin-html-inject](https://www.npmjs.com/package/vite-plugin-html-inject) for details.
+
+## Adding Credits to Wallpapers
+
+You can optionally add a `credits.txt` file within a wallpaper folder, which will be
+copied as is to the generated wallpapers folder.
 
 ## Changing Wallpaper Sizes
 

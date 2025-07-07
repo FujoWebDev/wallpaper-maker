@@ -24,5 +24,7 @@ document.querySelectorAll("#wallpaper-selection button").forEach((b) => {
 
 const currentWallpaper = sessionStorage.getItem("currentWallpaperPath");
 if (currentWallpaper) {
-  changeWallpaper(currentWallpaper);
+  document.addEventListener("DOMContentLoaded", () => {
+    changeWallpaper(currentWallpaper);
+  });
 }

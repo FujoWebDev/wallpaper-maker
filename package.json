@@ -7,10 +7,18 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
-    "postinstall": "cd generator && npm install"
+    "postinstall": "cd generator && npm install",
+    "generate": "npm run build && npm run --prefix generator/ generate",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "@types/node": "^22.5.4",
+    "husky": "^9.1.7",
     "typescript": "^5.2.2",
-    "vite": "^5.3.4"
+    "vite": "^5.3.4",
+    "vite-plugin-html-inject": "^1.1.2"
+  },
+  "dependencies": {
+    "vite-plugin-static-copy": "^1.0.6"
   }
 }

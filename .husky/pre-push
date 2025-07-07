@@ -1,0 +1,24 @@
+#!/bin/sh
+
+# Read remote and branch info from stdin (provided by git)
+while read local_ref local_sha remote_ref remote_sha
+do
+  # Only check pushes to the 'upstream' remote
+  if [ "$1" = "upstream" ]; then
+    # Extract branch name from ref
+    branch="${local_ref#refs/heads/}"
+    # Only allow branches starting with 'upstream', 'pr-upstream', or 'to-upstream'
+    case "$branch" in
+      upstream*|pr-upstream*|to-upstream*)
+        # Allowed
+        ;;
+      *)
+        echo "❌ Push blocked: Only branches starting with 'upstream', 'pr-upstream', or 'to-upstream' can be pushed to the 'upstream' remote."
+        echo "You tried to push branch '$branch'."
+        exit 1
+        ;;
+    esac
+  fi
+done
+
+exit 0 
