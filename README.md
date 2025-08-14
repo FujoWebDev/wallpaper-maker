@@ -57,12 +57,13 @@ copied as is to the generated wallpapers folder.
 
 You can add or remove wallpaper sizes by adding them in `config.json`.
 
-#### About husky hooks
+#### Pushing changes to `/wallpapers`
 
-This repo uses Husky git hooks to prevent accidental commits or pushes of
-/wallpapers files to upstream branches to keep FujoCoded from accidentally
-pushing internal assets to our open source repo. If you try to commit or push
-such files on a branch intended for upstream, the action will be blocked.
+This repo uses Husky git hooks to prevent accidental committing or pushing
+`/wallpapers` files to upstream repositories (like, most often, this one)! 
+This helps FujoCoded not accidentally push our internal assets to our open 
+source repo. 
 
 If you're trying to submit a new public example (and know what you're doing)
-you can bypass the check by using the -n option on our commands.
+you can bypass the check by using the `-n` option. If this is causing issues,
+let us know about it!
